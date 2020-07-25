@@ -27,7 +27,8 @@ namespace ClientGUI
 
         List<Record> Records = new List<Record>();
         ObservableCollection<RecordViewModel> ViewData = new ObservableCollection<RecordViewModel>();
-        int curId = 0;
+
+        List<RecordPage> openedRecords = new List<RecordPage>();
 
         public MainWindow()
         {
@@ -54,8 +55,8 @@ namespace ClientGUI
 
         private void NewRecord_click(object sender, RoutedEventArgs e)
         {
-            CreationPage creationPage = new CreationPage(this);
-            creationPage.Show();
+            RecordPage creationPage = new RecordPage(this);
+            ShowRecord(creationPage);
         }
 
         public bool ContainsRecord(int id)
@@ -85,7 +86,7 @@ namespace ClientGUI
 
         public async void AddRecord(string name, byte[] image)
         {
-            Record record = new Record(curId++, name, image);
+            Record record = new Record(-1, name, image);
 
             try
             {
@@ -103,7 +104,7 @@ namespace ClientGUI
         public void EditRecord(int id, string name, byte[] image)
         {
             Record record = Records.First(r => r.Id == id);
-            
+
             try
             {
                 client.UpdateRecord(record);
@@ -121,8 +122,20 @@ namespace ClientGUI
 
         public void EditRecord(int id)
         {
-            CreationPage creationPage = new CreationPage(this, Records.First(r => r.Id == id));
-            creationPage.Show();
+            RecordPage recordPage = new RecordPage(this, Records.First(r => r.Id == id));
+            ShowRecord(recordPage);
+        }
+
+        public void ShowRecord(RecordPage recordPage)
+        {
+            if (openedRecords.Any(rp => rp.recordId == recordPage.recordId))
+            {
+                openedRecords.First(rp => rp.recordId == recordPage.recordId).Activate();
+                return;
+            }
+
+            recordPage.Show();
+            openedRecords.Add(recordPage);
         }
 
         private void StackPanel_KeyDown(object sender, MouseButtonEventArgs e)
@@ -145,6 +158,11 @@ namespace ClientGUI
             {
                 MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
             }
+        }
+
+        public void CloseRecordPage(RecordPage page)
+        {
+            openedRecords.Remove(page);
         }
 
         private void sortByName_Click(object sender, RoutedEventArgs e)

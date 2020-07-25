@@ -1,5 +1,4 @@
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\ClientGUI.csprojAssemblyReference.cache
-E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\CreationPage.g.cs
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\MainWindow.g.cs
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\App.g.cs
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client_MarkupCompile.cache
@@ -11,7 +10,6 @@ E:\Tasks\ImageShare\InfoServer\Client\bin\Debug\InfoServerDataModels.dll
 E:\Tasks\ImageShare\InfoServer\Client\bin\Debug\Newtonsoft.Json.dll
 E:\Tasks\ImageShare\InfoServer\Client\bin\Debug\InfoServerDataModels.pdb
 E:\Tasks\ImageShare\InfoServer\Client\bin\Debug\Newtonsoft.Json.xml
-E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\CreationPage.baml
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\MainWindow.baml
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client.g.resources
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\ClientGUI.Properties.Resources.resources
@@ -19,3 +17,5 @@ E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\ClientGUI.csproj.GenerateResourc
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\ClientGUI.csproj.CopyComplete
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client.exe
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client.pdb
+E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\RecordPage.g.cs
+E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\RecordPage.baml

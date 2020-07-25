@@ -20,24 +20,24 @@ namespace ClientGUI
     /// <summary>
     /// Логика взаимодействия для CreationPage.xaml
     /// </summary>
-    public partial class CreationPage : Window
+    public partial class RecordPage : Window
     {
         string curImagePath;
 
         bool editing;
 
-        int id;
+        public int recordId;
         string name;
         byte[] image;
 
         MainWindow mainWindow;
 
-        public CreationPage(MainWindow mainWindow)
+        public RecordPage(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
             InitializeComponent();
         }
-        public CreationPage(MainWindow mainWindow, Record record)
+        public RecordPage(MainWindow mainWindow, Record record)
         {
             this.mainWindow = mainWindow;
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace ClientGUI
         void InitializeRecord(Record record)
         {
             editing = true;
-            id = record.Id;
+            recordId = record.Id;
             name = record.Name;
             image = (byte[])record.Image.Clone();
 
@@ -116,7 +116,7 @@ namespace ClientGUI
             }
 
             if (editing)
-                mainWindow.EditRecord(id, name, image);
+                mainWindow.EditRecord(recordId, name, image);
             else
                 mainWindow.AddRecord(name, image);
             this.Close();
@@ -129,9 +129,9 @@ namespace ClientGUI
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (editing && mainWindow.ContainsRecord(id))
+            if (editing && mainWindow.ContainsRecord(recordId))
             {
-                mainWindow.DeleteRecord(id);
+                mainWindow.DeleteRecord(recordId);
             }
             this.Close();
         }
@@ -154,6 +154,11 @@ namespace ClientGUI
                 return false;
             }
             return true;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mainWindow.CloseRecordPage(this);
         }
     }
 }
