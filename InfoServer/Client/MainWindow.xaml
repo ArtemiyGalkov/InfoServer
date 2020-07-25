@@ -1,0 +1,42 @@
+﻿<Window x:Class="ClientGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="InfoClient" Height="450" Width="300">
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Margin="5" MouseDown="StackPanel_KeyDown">
+                <TextBlock Text="{Binding Id}" Visibility="Collapsed"/>
+                <Image Source="{Binding Image}"/>
+                <TextBlock FontSize="16" Text="{Binding Path = Name}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Height="auto" VerticalAlignment="Top">
+            <MenuItem Header="Load data" Click="loadData_Click"/>
+            <MenuItem Header="New card" Click="NewRecord_click"/>
+        </Menu>
+
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="3" Grid.Column="1">
+            <ListBox x:Name="recordsList" ItemTemplate="{StaticResource listTemplate}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+        </ScrollViewer>
+    </Grid>
+</Window>

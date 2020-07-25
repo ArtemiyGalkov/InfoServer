@@ -1,0 +1,15 @@
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.csprojAssemblyReference.cache
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.AssemblyInfoInputs.cache
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.AssemblyInfo.cs
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.exe
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\InfoServerDataModels.dll
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\InfoServerDataModels.pdb
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.csproj.CopyComplete
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.deps.json
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.runtimeconfig.json
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.runtimeconfig.dev.json
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.dll
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Server.pdb
+E:\Tasks\ImageShare\InfoServer\Server\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.dll
+E:\Tasks\ImageShare\InfoServer\Server\obj\Debug\netcoreapp3.0\Server.pdb

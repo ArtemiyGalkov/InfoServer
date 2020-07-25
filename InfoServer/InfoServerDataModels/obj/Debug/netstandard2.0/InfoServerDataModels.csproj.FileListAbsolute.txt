@@ -1,0 +1,8 @@
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\bin\Debug\netstandard2.0\InfoServerDataModels.deps.json
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\bin\Debug\netstandard2.0\InfoServerDataModels.dll
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\bin\Debug\netstandard2.0\InfoServerDataModels.pdb
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\obj\Debug\netstandard2.0\InfoServerDataModels.csprojAssemblyReference.cache
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\obj\Debug\netstandard2.0\InfoServerDataModels.AssemblyInfoInputs.cache
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\obj\Debug\netstandard2.0\InfoServerDataModels.AssemblyInfo.cs
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\obj\Debug\netstandard2.0\InfoServerDataModels.dll
+E:\Tasks\ImageShare\InfoServer\InfoServerDataModels\obj\Debug\netstandard2.0\InfoServerDataModels.pdb
