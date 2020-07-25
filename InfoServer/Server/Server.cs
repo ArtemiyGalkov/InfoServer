@@ -38,10 +38,10 @@ namespace Server
                 resp = context.Response;
 
                 // Print out some info about the request
+                Console.WriteLine();
                 Console.WriteLine("Request #: {0}", ++requestCount);
                 Console.WriteLine(req.Url.ToString());
                 Console.WriteLine(req.HttpMethod);
-                Console.WriteLine();
 
                 // If `shutdown` url requested w/ POST, then shutdown the server after serving the page
                 if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/shutdown"))
@@ -126,7 +126,7 @@ namespace Server
                     }
                 }
 
-                if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/delete"))
+                if ((req.HttpMethod == "DELETE") && (req.Url.AbsolutePath == "/delete"))
                 {
                     Console.WriteLine("delete");
 
@@ -138,9 +138,14 @@ namespace Server
                             string json = File.ReadAllText($"{serverDirectory}\\data.json");
                             int startIndex = json.IndexOf($"\"Id\":{id}") - 1;
                             int endIndex = json.IndexOf("}", startIndex) + 1;
-                            if (json[endIndex + 1] == ']')
+                            if (json[endIndex] == ']')
+                            {
+                                if (json[startIndex - 1] != '[')
+                                    startIndex--;
                                 endIndex--;
-                            json = json.Remove(startIndex, endIndex - startIndex);
+                            }
+
+                            json = json.Remove(startIndex, 1 + endIndex - startIndex);
                             
                             /*if (json[1] == ',')
                                 json = json.Remove(1, 1);*/

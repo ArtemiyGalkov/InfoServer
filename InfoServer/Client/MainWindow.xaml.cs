@@ -67,11 +67,21 @@ namespace ClientGUI
         public void DeleteRecord(int id)
         {
             var record = Records.First(r => r.Id == id);
-            Records.Remove(record);
-            ViewData.Remove(ViewData.First(r => r.Id == id));
-            recordsList.Items.Refresh();
 
-            client.DeleteRecord(id);
+            try
+            {
+                client.DeleteRecord(id);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
+            }
+            finally
+            {
+                Records.Remove(record);
+                ViewData.Remove(ViewData.First(r => r.Id == id));
+                recordsList.Items.Refresh();
+            }
         }
 
         public async void AddRecord(string name, byte[] image)
@@ -80,17 +90,41 @@ namespace ClientGUI
             Records.Add(record);
             ViewData.Add(new RecordViewModel(record));
 
-            record.Id = await client.SendRecord(record);
+            try
+            {
+                record.Id = await client.SendRecord(record);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);                
+            }
         }
 
         public void EditRecord(int id, string name, byte[] image)
         {
             Record record = Records.First(r => r.Id == id);
+
+            string _name = record.Name;
+            byte[] _image = record.Image;
+
             record.Name = name;
             record.Image = image;
-            recordsList.Items.Refresh();
 
-            client.UpdateRecord(record);
+            try
+            {
+                client.UpdateRecord(record);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
+
+                record.Name = _name;
+                record.Image = _image;
+            }
+            finally
+            {
+                recordsList.Items.Refresh();
+            }
         }
 
         public void EditRecord(int id)
@@ -108,8 +142,20 @@ namespace ClientGUI
 
         private async void loadData_Click(object sender, RoutedEventArgs e)
         {
-            List<Record> records = await client.GetRecords();
-            ShowRecords(records);
+            List<Record> records = new List<Record>();
+            try
+            {
+                records = await client.GetRecords();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
+            }
+            finally
+            {
+                ShowRecords(records);
+            }
+            
         }
     }
 }

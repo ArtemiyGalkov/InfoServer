@@ -71,7 +71,7 @@ namespace ClientGUI
 
         public async void DeleteRecord(int id)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/delete");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, $"/delete");
             
             var buffer = System.Text.Encoding.UTF8.GetBytes(id.ToString());
             var byteContent = new ByteArrayContent(buffer);
