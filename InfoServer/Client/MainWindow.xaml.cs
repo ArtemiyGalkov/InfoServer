@@ -87,16 +87,19 @@ namespace ClientGUI
         public async void AddRecord(string name, byte[] image)
         {
             Record record = new Record(curId++, name, image);
-            Records.Add(record);
-            ViewData.Add(new RecordViewModel(record));
 
             try
             {
-                record.Id = await client.SendRecord(record);
+                record.Id = await client.UploadRecord(record);
             }
             catch (Exception exception)
             {
                 MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);                
+            }
+            finally
+            {
+                Records.Add(record);
+                ViewData.Add(new RecordViewModel(record));
             }
         }
 

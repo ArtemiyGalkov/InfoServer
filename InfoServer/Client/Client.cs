@@ -32,7 +32,7 @@ namespace ClientGUI
             return records;
         }
 
-        public async Task<int> SendRecord(Record record)
+        public async Task<int> UploadRecord(Record record)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/add");
 
@@ -53,7 +53,7 @@ namespace ClientGUI
         }
         public async void UpdateRecord(Record record)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/update");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/update/{record.Id}");
 
             string json = JsonConvert.SerializeObject(record);
 
@@ -71,15 +71,15 @@ namespace ClientGUI
 
         public async void DeleteRecord(int id)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, $"/delete");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, $"/delete/{id}");
             
-            var buffer = System.Text.Encoding.UTF8.GetBytes(id.ToString());
+            /*var buffer = System.Text.Encoding.UTF8.GetBytes(id.ToString());
             var byteContent = new ByteArrayContent(buffer);
 
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
 
             //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/shutdown");
-            request.Content = byteContent;
+            request.Content = byteContent;*/
 
             var response = await client.SendAsync(request);
             var responseString = await response.Content.ReadAsStringAsync();
