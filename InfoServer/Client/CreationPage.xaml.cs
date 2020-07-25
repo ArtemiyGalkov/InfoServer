@@ -110,6 +110,11 @@ namespace ClientGUI
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!VerifyRecord())
+            {
+                return;
+            }
+
             if (editing)
                 mainWindow.EditRecord(id, name, image);
             else
@@ -134,6 +139,21 @@ namespace ClientGUI
         private void nameBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             name = nameBox.Text;
+        }
+
+        bool VerifyRecord()
+        {
+            if (String.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Name isn't specified!");
+                return false;
+            }
+            if (image == null || image.Length == 0)
+            {
+                MessageBox.Show("Image isn't specified!");
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -32,6 +32,10 @@
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Height="auto" VerticalAlignment="Top">
             <MenuItem Header="Load cards" Click="loadData_Click"/>
             <MenuItem Header="New card" Click="NewRecord_click"/>
+            <MenuItem Header="Sort">
+                <MenuItem Header="By name" Click="sortByName_Click"/>
+                <MenuItem Header="Default" Click="sortByDefault_Click"/>
+            </MenuItem>
         </Menu>
 
         <ScrollViewer Grid.Row="1" Grid.RowSpan="3" Grid.Column="1">

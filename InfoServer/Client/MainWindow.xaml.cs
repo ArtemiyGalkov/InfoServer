@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,16 +72,14 @@ namespace ClientGUI
             try
             {
                 client.DeleteRecord(id);
+
+                Records.Remove(record);
+                ViewData.Remove(ViewData.First(r => r.Id == id));
+                recordsList.Items.Refresh();
             }
             catch (Exception exception)
             {
                 MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
-            }
-            finally
-            {
-                Records.Remove(record);
-                ViewData.Remove(ViewData.First(r => r.Id == id));
-                recordsList.Items.Refresh();
             }
         }
 
@@ -91,42 +90,32 @@ namespace ClientGUI
             try
             {
                 record.Id = await client.UploadRecord(record);
+
+                Records.Add(record);
+                ViewData.Add(new RecordViewModel(record));
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);                
-            }
-            finally
-            {
-                Records.Add(record);
-                ViewData.Add(new RecordViewModel(record));
+                MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
             }
         }
 
         public void EditRecord(int id, string name, byte[] image)
         {
             Record record = Records.First(r => r.Id == id);
-
-            string _name = record.Name;
-            byte[] _image = record.Image;
-
-            record.Name = name;
-            record.Image = image;
-
+            
             try
             {
                 client.UpdateRecord(record);
+
+                record.Name = name;
+                record.Image = image;
+
+                recordsList.Items.Refresh();
             }
             catch (Exception exception)
             {
                 MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
-
-                record.Name = _name;
-                record.Image = _image;
-            }
-            finally
-            {
-                recordsList.Items.Refresh();
             }
         }
 
@@ -149,16 +138,26 @@ namespace ClientGUI
             try
             {
                 records = await client.GetRecords();
+
+                ShowRecords(records);
             }
             catch (Exception exception)
             {
                 MessageBox.Show("Error occurred while connectiong to server.\n\r" + exception.Message);
             }
-            finally
-            {
-                ShowRecords(records);
-            }
-            
+        }
+
+        private void sortByName_Click(object sender, RoutedEventArgs e)
+        {
+            recordsList.Items.SortDescriptions.Clear();
+            recordsList.Items.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            recordsList.Items.Refresh();
+        }
+        private void sortByDefault_Click(object sender, RoutedEventArgs e)
+        {
+            recordsList.Items.SortDescriptions.Clear();
+            recordsList.Items.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));
+            recordsList.Items.Refresh();
         }
     }
 }
