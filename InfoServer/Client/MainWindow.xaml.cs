@@ -211,5 +211,11 @@ namespace ClientGUI
             recordsList.Items.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));
             recordsList.Items.Refresh();
         }
+
+        private void AboutClick(object sender, RoutedEventArgs e)
+        {
+            AboutPage about = new AboutPage();
+            about.Show();
+        }
     }
 }

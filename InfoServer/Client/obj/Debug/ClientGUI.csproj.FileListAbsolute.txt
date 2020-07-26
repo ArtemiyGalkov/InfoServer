@@ -19,3 +19,5 @@ E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client.exe
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\Client.pdb
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\RecordPage.g.cs
 E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\RecordPage.baml
+E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\AboutPage.g.cs
+E:\Tasks\ImageShare\InfoServer\Client\obj\Debug\AboutPage.baml

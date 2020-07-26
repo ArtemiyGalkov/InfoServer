@@ -256,6 +256,10 @@ namespace Server
                 curId = properties.nextId;
                 serverDirectory = properties.ServerFolder;
                 Console.WriteLine(serverDirectory);
+                if (!Directory.Exists($"{serverDirectory}"))
+                {
+                    Directory.CreateDirectory($"{serverDirectory}");
+                }
                 if (!File.Exists($"{serverDirectory}\\data.json"))
                 {
                     File.WriteAllText($"{serverDirectory}\\data.json", "[]");

@@ -49,6 +49,7 @@ namespace ClientGUI
             this.mainWindow = mainWindow;
             InitializeComponent();
             InitializeRecord(record);
+            Title = name;
         }
 
         /// <summary>

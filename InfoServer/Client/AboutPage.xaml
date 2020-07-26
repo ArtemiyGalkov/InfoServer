@@ -1,0 +1,19 @@
+﻿<Window x:Class="ClientGUI.AboutPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="About" Height="349" Width="388" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock x:Name="label" HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap">
+            This is client of InfoServer, where you can view, create, udpate and delete cards. <LineBreak/><LineBreak/>
+            Make sure the server is running, otherwise none operations will work. <LineBreak/><LineBreak/>
+            First, load all cards from server using InfoClient's "Load cards" menu button. It loads all cards from server and display them. <LineBreak/><LineBreak/>
+            To create new card, click InfoClient's "New card" menu button. It shows Card window where you must input name (into Name field) and choose image (using button) and then click "Save". <LineBreak/><LineBreak/>
+            To edit existing cards, click on it in InfoClient window. It opens this card's window where you can change name or image. <LineBreak/> Then, if you want to save - click "Save" button, 
+            if you don't want to save - click "Return button", if you want to delete (both from client and server) this card - click "Delete" button.
+        </TextBlock>
+    </Grid>
+</Window>
