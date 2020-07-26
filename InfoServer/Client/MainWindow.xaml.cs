@@ -125,10 +125,10 @@ namespace ClientGUI
 
             try
             {
-                client.UpdateRecord(record);
-
                 record.Name = name;
                 record.Image = image;
+
+                client.UpdateRecord(record);
 
                 recordsList.Items.Refresh();
             }

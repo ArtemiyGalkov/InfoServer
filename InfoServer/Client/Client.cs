@@ -48,7 +48,7 @@ namespace ClientGUI
         /// </summary>
         public async Task<int> UploadRecord(Record record)
         {
-            Record uploadingRecord = new Record(0 , record.Name, Compressor.Compress(record.Image));
+            Record uploadingRecord = new Record(0, record.Name, Compressor.Compress(record.Image));
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/add");
 
@@ -72,7 +72,7 @@ namespace ClientGUI
         /// </summary>
         public async void UpdateRecord(Record record)
         {
-            Record uploadingRecord = new Record(0, record.Name, Compressor.Compress(record.Image));
+            Record uploadingRecord = new Record(record.Id, record.Name, Compressor.Compress(record.Image));
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/update/{uploadingRecord.Id}");
 
