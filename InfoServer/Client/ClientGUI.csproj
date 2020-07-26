@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Compressor.cs" />
     <Compile Include="RecordViewModel.cs" />
     <Page Include="RecordPage.xaml">
       <SubType>Designer</SubType>

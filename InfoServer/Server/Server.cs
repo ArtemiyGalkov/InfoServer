@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// Contains main server logic
+    /// </summary>
     class Server
     {
         public static HttpListener listener;
@@ -25,6 +28,9 @@ namespace Server
         static HttpListenerRequest req;
         static HttpListenerResponse resp;
 
+        /// <summary>
+        /// Handles all upcoming connections
+        /// </summary>
         public static async Task HandleConnections()
         {
             while (running)
@@ -39,6 +45,9 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Handles current request
+        /// </summary>
         public static void HandleRequest()
         {
             Console.WriteLine();
@@ -71,11 +80,18 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Shuts server down
+        /// </summary>
         public static void ShutDown()
         {
             Console.WriteLine("Shutdown requested");
             running = false;
         }
+
+        /// <summary>
+        /// Adds new record
+        /// </summary>
         public static void AddRecord()
         {
             Console.WriteLine("create");
@@ -103,6 +119,10 @@ namespace Server
                 }
             }
         }
+
+        /// <summary>
+        /// Send records to client
+        /// </summary>
         public static void SendRecords()
         {
             Console.WriteLine("read");
@@ -113,6 +133,10 @@ namespace Server
 
             Respond(response, "application/json");
         }
+
+        /// <summary>
+        /// Updates existing record
+        /// </summary>
         public static void UpdateRecord()
         {
             Console.WriteLine("update");
@@ -146,6 +170,10 @@ namespace Server
                 }
             }
         }
+
+        /// <summary>
+        /// Deletes existing record
+        /// </summary>
         public static void DeleteRecord()
         {
             Console.WriteLine("delete");
@@ -171,6 +199,9 @@ namespace Server
             Respond(response, "text/plain");
         }
 
+        /// <summary>
+        /// Sends respond to client
+        /// </summary>
         public async static void Respond(byte[] data, string contentType)
         {
             string disableSubmit = !running ? "disabled" : "";
@@ -183,6 +214,9 @@ namespace Server
             Console.WriteLine("Connection closed");
         }
 
+        /// <summary>
+        /// Starts server
+        /// </summary>
         public void Start()
         {
             LoadProperties();
@@ -198,6 +232,9 @@ namespace Server
             SaveProperties();
         }
 
+        /// <summary>
+        /// Saves server properties to file
+        /// </summary>
         public void SaveProperties()
         {
             ServerProperties properties = new ServerProperties();
@@ -207,6 +244,9 @@ namespace Server
             File.WriteAllText("properties.json", json);
         }
 
+        /// <summary>
+        /// Loads server properties from file
+        /// </summary>
         public void LoadProperties()
         {
             string json = File.ReadAllText("properties.json");

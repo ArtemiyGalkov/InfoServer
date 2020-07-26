@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Server
 {
+    /// <summary>
+    /// Contains server properties
+    /// </summary>
     class ServerProperties
     {
         public int nextId;

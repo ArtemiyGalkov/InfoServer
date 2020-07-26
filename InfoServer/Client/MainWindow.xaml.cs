@@ -36,13 +36,19 @@ namespace ClientGUI
             recordsList.ItemsSource = ViewData;
         }
 
-        public void ShowRecords(List<Record> records)
+        /// <summary>
+        /// Displays all records
+        /// </summary>
+        void ShowRecords(List<Record> records)
         {
             Records = records.ToList();
             InitializeViewData();
         }
 
-        public void InitializeViewData()
+        /// <summary>
+        /// Fills ViewData with records
+        /// </summary>
+        void InitializeViewData()
         {
             ViewData.Clear();
 
@@ -59,6 +65,9 @@ namespace ClientGUI
             ShowRecord(creationPage);
         }
 
+        /// <summary>
+        /// Checks, if there are any record with given id
+        /// </summary>
         public bool ContainsRecord(int id)
         {
             if (Records.Any(record => record.Id == id))
@@ -66,6 +75,9 @@ namespace ClientGUI
             return false;
         }
 
+        /// <summary>
+        /// Deletes record from client and server
+        /// </summary>
         public void DeleteRecord(int id)
         {
             var record = Records.First(r => r.Id == id);
@@ -84,6 +96,9 @@ namespace ClientGUI
             }
         }
 
+        /// <summary>
+        /// Adds new record and uploads it to server
+        /// </summary>
         public async void AddRecord(string name, byte[] image)
         {
             Record record = new Record(-1, name, image);
@@ -101,6 +116,9 @@ namespace ClientGUI
             }
         }
 
+        /// <summary>
+        /// Updates record on client and server
+        /// </summary>
         public void EditRecord(int id, string name, byte[] image)
         {
             Record record = Records.First(r => r.Id == id);
@@ -120,13 +138,19 @@ namespace ClientGUI
             }
         }
 
-        public void EditRecord(int id)
+        /// <summary>
+        /// Shows record window for record with given id
+        /// </summary>
+        void EditRecord(int id)
         {
             RecordPage recordPage = new RecordPage(this, Records.First(r => r.Id == id));
             ShowRecord(recordPage);
         }
 
-        public void ShowRecord(RecordPage recordPage)
+        /// <summary>
+        /// Displays given record page
+        /// </summary>
+        void ShowRecord(RecordPage recordPage)
         {
             if (openedRecords.Any(rp => rp.recordId == recordPage.recordId))
             {
@@ -160,17 +184,27 @@ namespace ClientGUI
             }
         }
 
+        /// <summary>
+        /// Closes given record page
+        /// </summary>
         public void CloseRecordPage(RecordPage page)
         {
             openedRecords.Remove(page);
         }
 
+        /// <summary>
+        /// Sorts displayed records by name
+        /// </summary>
         private void sortByName_Click(object sender, RoutedEventArgs e)
         {
             recordsList.Items.SortDescriptions.Clear();
             recordsList.Items.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             recordsList.Items.Refresh();
         }
+
+        /// <summary>
+        /// Sorts displayed records by id
+        /// </summary>
         private void sortByDefault_Click(object sender, RoutedEventArgs e)
         {
             recordsList.Items.SortDescriptions.Clear();

@@ -32,11 +32,18 @@ namespace ClientGUI
 
         MainWindow mainWindow;
 
+        /// <summary>
+        /// Constructor used for creation of new records
+        /// </summary>
         public RecordPage(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Constructor used for editing existing records
+        /// </summary>
         public RecordPage(MainWindow mainWindow, Record record)
         {
             this.mainWindow = mainWindow;
@@ -44,6 +51,9 @@ namespace ClientGUI
             InitializeRecord(record);
         }
 
+        /// <summary>
+        /// Move data from record to the page
+        /// </summary>
         void InitializeRecord(Record record)
         {
             editing = true;
@@ -54,12 +64,18 @@ namespace ClientGUI
             ShowCurRecord();
         }
 
+        /// <summary>
+        /// Displays current record
+        /// </summary>
         void ShowCurRecord()
         {
             nameBox.Text = name;
             ShowImage();
         }
-        
+
+        /// <summary>
+        /// Selects image from drive
+        /// </summary>
         private void selectImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -77,22 +93,17 @@ namespace ClientGUI
             }
         }
 
-        /*void ShowImage(string path)
-        {
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri(curImagePath);
-            image.EndInit();
-
-            imagePreview.Source = image;
-            imagePath.Text = curImagePath;
-        }*/
-
+        /// <summary>
+        /// Reads content of file into image
+        /// </summary>
         void ConvertImage(string path)
         {
             image = File.ReadAllBytes(path);
         }
 
+        /// <summary>
+        /// Displays current image
+        /// </summary>
         void ShowImage()
         {
             using (var ms = new System.IO.MemoryStream(image))
@@ -141,6 +152,9 @@ namespace ClientGUI
             name = nameBox.Text;
         }
 
+        /// <summary>
+        /// Checks if all record data is specified
+        /// </summary>
         bool VerifyRecord()
         {
             if (String.IsNullOrEmpty(name))

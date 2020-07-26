@@ -11,6 +11,9 @@ using InfoServerDataModels;
 
 namespace ClientGUI
 {
+    /// <summary>
+    /// Contains main client-server interactions
+    /// </summary>
     class Client
     {
         HttpClient client = new HttpClient();
@@ -21,6 +24,9 @@ namespace ClientGUI
             client.BaseAddress = new Uri(site);
         }
 
+        /// <summary>
+        /// Get all records from server
+        /// </summary>
         public async Task<List<Record>> GetRecords()
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"/get");
@@ -29,14 +35,24 @@ namespace ClientGUI
 
             List<Record> records = JsonConvert.DeserializeObject<List<Record>>(responseString);
 
+            foreach (Record record in records)
+            {
+                record.Image = Compressor.Decompress(record.Image);
+            }
+
             return records;
         }
 
+        /// <summary>
+        /// Uploads new record to the server
+        /// </summary>
         public async Task<int> UploadRecord(Record record)
         {
+            Record uploadingRecord = new Record(0 , record.Name, Compressor.Compress(record.Image));
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/add");
 
-            string json = JsonConvert.SerializeObject(record);
+            string json = JsonConvert.SerializeObject(uploadingRecord);
 
             var buffer = System.Text.Encoding.UTF8.GetBytes(json);
             var byteContent = new ByteArrayContent(buffer);
@@ -50,11 +66,17 @@ namespace ClientGUI
 
             return int.Parse(responseString);
         }
+
+        /// <summary>
+        /// Updates record on the server
+        /// </summary>
         public async void UpdateRecord(Record record)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/update/{record.Id}");
+            Record uploadingRecord = new Record(0, record.Name, Compressor.Compress(record.Image));
 
-            string json = JsonConvert.SerializeObject(record);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"/update/{uploadingRecord.Id}");
+
+            string json = JsonConvert.SerializeObject(uploadingRecord);
 
             var buffer = System.Text.Encoding.UTF8.GetBytes(json);
             var byteContent = new ByteArrayContent(buffer);
@@ -67,6 +89,9 @@ namespace ClientGUI
             var responseString = await response.Content.ReadAsStringAsync();
         }
 
+        /// <summary>
+        /// Deletes record from the server
+        /// </summary>
         public async void DeleteRecord(int id)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, $"/delete/{id}");
